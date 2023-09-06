@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+@import 'variables.scss';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $corFundo;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+
+    &-center {
+        justify-content: center;
+        align-items: center;
+    }
+}

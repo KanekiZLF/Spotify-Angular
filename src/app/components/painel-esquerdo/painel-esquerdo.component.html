@@ -1,1 +1,21 @@
-<p>painel-esquerdo works!</p>
+<div class="menus flex">
+    <div class="img-container flex flex-center">
+        <img src="assets/images/spotify-logo.png" alt="Logo Spotify" srcset="">
+    </div>
+
+    <div class="menu-container flex opcoes">
+        <app-botao-menu [descricao]="'Home'" [selecionado]="true">
+            <fa-icon [icon]="homeIcon"></fa-icon>
+        </app-botao-menu>
+        <app-botao-menu [descricao]="'Pesquisar'">
+            <fa-icon [icon]="pesquisarIcon"></fa-icon>
+        </app-botao-menu>
+        <app-botao-menu [descricao]="'Artistas'">
+            <fa-icon [icon]="playlist"></fa-icon>
+        </app-botao-menu>
+
+    </div>
+</div>
+<div class="usuario-info">
+
+</div>

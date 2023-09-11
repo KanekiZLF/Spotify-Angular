@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { SpotifyConfiguration } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { IUsuario } from '../pages/Interfaces/IUsuario';
-import { SpotifyUserParaUsuario } from '../Common/spotifyHelper';
+import { SpotifyPlaylistParaPlaylist, SpotifyUserParaUsuario } from '../Common/spotifyHelper';
+import { IPlaylist } from '../pages/Interfaces/IPlaylist';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,13 @@ export class SpotifyService {
   }
 
   async inicializarUsuario() {
+    if (!!this.usuario)
+      return true;
+
     const token = localStorage.getItem('token');
 
     if (!token)
       return false;
-
-    if (!!this.usuario)
-      return true;
 
     try {
       this.definirAcessoToken(token);
@@ -36,9 +37,22 @@ export class SpotifyService {
   }
 
   async obterSpotifyUsuario() {
-    const userInfo = await this.spotifyApi.getMe();
-    this.usuario = SpotifyUserParaUsuario(userInfo);
+    try {
+      const userInfo = await this.spotifyApi.getMe();
+      if (userInfo && userInfo.id) {
+        this.usuario = SpotifyUserParaUsuario(userInfo);
+      } else {
+        // Trate o caso em que userInfo ou userInfo.id são indefinidos
+        console.error('Não foi possível obter informações do usuário do Spotify.');
+        this.usuario = null; // Defina this.usuario como nulo ou outra ação apropriada.
+      }
+    } catch (error) {
+      // Lide com erros aqui, se necessário
+      console.error('Erro ao obter informações do usuário do Spotify:', error);
+      this.usuario = null; // Defina this.usuario como nulo ou outra ação apropriada em caso de erro.
+    }
   }
+
 
   obterUrlLogin() {
     const authEndpoint = `${SpotifyConfiguration.authEndpoint}?`;
@@ -60,5 +74,12 @@ export class SpotifyService {
   definirAcessoToken(token: string) {
     this.spotifyApi.setAccessToken(token);
     localStorage.setItem('token', token);
+  }
+
+  async buscarPlaylistUsuario(offset = 0, limit = 50): Promise<IPlaylist[]> {
+    const userInfo = await this.spotifyApi.getMe();
+    const playlist = await this.spotifyApi.getUserPlaylists(userInfo.id, { offset, limit });
+    console.log(playlist);
+    return playlist.items.map(SpotifyPlaylistParaPlaylist);
   }
 }

@@ -7,7 +7,7 @@ export const usuarioEstaLogadoResolver = () => new Promise(async (res, rej) => {
     const router = inject(Router);
 
     const naoAutenticado = () => {
-        // localStorage.clear();
+        localStorage.clear();
         router.navigateByUrl('/login');
         rej('USUARIO NAO AUTENTICADO!')
         return false;

@@ -8,15 +8,21 @@ import { faHome, faSearch, faGuitar, faMusic } from '@fortawesome/free-solid-svg
 })
 export class PainelEsquerdoComponent implements OnInit {
 
+  menuSelecionado = 'Home';
+
   // Icones
   homeIcon = faHome;
   pesquisarIcon = faSearch;
   artistasIcon = faGuitar;
-  playlist = faMusic;
+  playlistIcon = faMusic;
 
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  botaoClick(botao: string) {
+    this.menuSelecionado = botao;
   }
 }

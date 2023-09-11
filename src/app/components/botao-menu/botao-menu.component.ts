@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-botao-menu',
@@ -13,9 +13,16 @@ export class BotaoMenuComponent implements OnInit {
   @Input()
   selecionado = false;
 
+  @Output()
+  click = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  onClick(){
+    this.click.emit();
   }
 }

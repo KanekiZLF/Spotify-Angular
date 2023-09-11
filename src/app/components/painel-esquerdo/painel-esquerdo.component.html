@@ -4,16 +4,29 @@
     </div>
 
     <div class="menu-container flex opcoes">
-        <app-botao-menu [descricao]="'Home'" [selecionado]="true">
+        <app-botao-menu [descricao]="'Home'" [selecionado]="menuSelecionado == 'Home'" (click)="botaoClick('Home')">
             <fa-icon [icon]="homeIcon"></fa-icon>
         </app-botao-menu>
-        <app-botao-menu [descricao]="'Pesquisar'">
+        <app-botao-menu [descricao]="'Pesquisar'" [selecionado]="menuSelecionado == 'Pesquisar'"
+            (click)="botaoClick('Pesquisar')">
             <fa-icon [icon]="pesquisarIcon"></fa-icon>
         </app-botao-menu>
-        <app-botao-menu [descricao]="'Artistas'">
-            <fa-icon [icon]="playlist"></fa-icon>
+        <app-botao-menu [descricao]="'Artistas'" [selecionado]="menuSelecionado == 'Artistas'"
+            (click)="botaoClick('Artistas')">
+            <fa-icon [icon]="playlistIcon"></fa-icon>
         </app-botao-menu>
 
+    </div>
+
+    <div class="menu-container flex">
+        <span class="playlist-titulo">PlayList</span>
+
+        <div class="playlist-scroll">
+            <app-botao-menu [descricao]="'Play 1'" [selecionado]="menuSelecionado == 'Play1'"
+                (click)="botaoClick('Play1')">
+                <fa-icon [icon]="playlistIcon"></fa-icon>
+            </app-botao-menu>
+        </div>
     </div>
 </div>
 <div class="usuario-info">

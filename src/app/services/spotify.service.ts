@@ -4,6 +4,7 @@ import Spotify from 'spotify-web-api-js';
 import { IUsuario } from '../pages/Interfaces/IUsuario';
 import { SpotifyPlaylistParaPlaylist, SpotifyUserParaUsuario } from '../Common/spotifyHelper';
 import { IPlaylist } from '../pages/Interfaces/IPlaylist';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class SpotifyService {
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   usuario: IUsuario;
 
-  constructor() {
+  constructor(private router: Router) {
     this.spotifyApi = new Spotify();
+    this.usuario = null; // Inicialize this.usuario com null ou outro valor padrão, se necessário
   }
 
   async inicializarUsuario() {
@@ -32,9 +34,11 @@ export class SpotifyService {
       return !!this.usuario;
     }
     catch (ex) {
+      console.error('Não foi possível definir o Token de acesso !');
       return false;
     }
   }
+
 
   async obterSpotifyUsuario() {
     try {
@@ -42,12 +46,10 @@ export class SpotifyService {
       if (userInfo && userInfo.id) {
         this.usuario = SpotifyUserParaUsuario(userInfo);
       } else {
-        // Trate o caso em que userInfo ou userInfo.id são indefinidos
         console.error('Não foi possível obter informações do usuário do Spotify.');
         this.usuario = null; // Defina this.usuario como nulo ou outra ação apropriada.
       }
     } catch (error) {
-      // Lide com erros aqui, se necessário
       console.error('Erro ao obter informações do usuário do Spotify:', error);
       this.usuario = null; // Defina this.usuario como nulo ou outra ação apropriada em caso de erro.
     }
@@ -79,7 +81,11 @@ export class SpotifyService {
   async buscarPlaylistUsuario(offset = 0, limit = 50): Promise<IPlaylist[]> {
     const userInfo = await this.spotifyApi.getMe();
     const playlist = await this.spotifyApi.getUserPlaylists(userInfo.id, { offset, limit });
-    console.log(playlist);
     return playlist.items.map(SpotifyPlaylistParaPlaylist);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

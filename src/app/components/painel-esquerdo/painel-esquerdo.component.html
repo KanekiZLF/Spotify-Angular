@@ -22,13 +22,13 @@
         <span class="playlist-titulo">PlayList</span>
 
         <div class="playlist-scroll">
-            <app-botao-menu [descricao]="'Play 1'" [selecionado]="menuSelecionado == 'Play1'"
-                (click)="botaoClick('Play1')">
+            <app-botao-menu *ngFor="let playlist of playlists" [descricao]="playlist.nome"
+                [selecionado]="menuSelecionado == playlist.id" (click)="botaoClick(playlist.id)">
                 <fa-icon [icon]="playlistIcon"></fa-icon>
             </app-botao-menu>
         </div>
     </div>
 </div>
 <div class="usuario-info">
-
+    <app-rodape-usuario></app-rodape-usuario>
 </div>

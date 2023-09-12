@@ -1,0 +1,8 @@
+<div class="flex">
+    <ng-container *ngIf="usuario">
+        <img [src]="usuario.imagemUrl" alt="" srcset="">
+        <span>{{ usuario.nome }}</span>
+    </ng-container>
+    <fa-icon (click)="logout()" class="icon" [icon]="sairIcon">
+    </fa-icon>
+</div>

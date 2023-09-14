@@ -63,10 +63,15 @@ $h-desconsiderar: calc($h-spotify-logo + $h-menu-opcoes + $h-footer-user);
 
             &::-webkit-scrollbar {
                 width: 10px;
-            }
 
-            &::-webkit-scrollbar-thumb {
-                background-color: rgb(185, 181, 175);
+                &-thumb {
+                    background-color: rgb(185, 181, 175);
+                    border-radius: 10px;
+                }
+
+                &-thumb:hover {
+                    background-color: rgb(148, 145, 140);
+                }
             }
 
             * {

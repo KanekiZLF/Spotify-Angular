@@ -11,13 +11,22 @@
     <table class="table mt-3">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Titulo</th>
-                <th>Artista</th>
-                <th>Tempo</th>
-                <th>Album</th>
+                <th class="w-5">#</th>
+                <th class="w-35">Titulo</th>
+                <th class="w-30">Artista</th>
+                <th class="w-10" class="direita">Tempo</th>
+                <th class="w-20">Album</th>
             </tr>
         </thead>
+        <tbody>
+            <tr *ngFor="let musica of musicas" (click)="executarMusica(musica)" [class.executando]="musica.id == musicaAtual.id">
+                <td><fa-icon class="play" [icon]="playIcon"></fa-icon></td>
+                <td>{{ musica.titulo }}</td>
+                <td>{{ obterArtistas(musica) }}</td>
+                <td class="direita">{{ musica.tempo }}</td>
+                <td>{{ musica.album.nome }}</td>
+            </tr>
+        </tbody>
     </table>
 
 </div>

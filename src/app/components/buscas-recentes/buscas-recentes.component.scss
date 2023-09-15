@@ -1,0 +1,46 @@
+@import 'variables.scss';
+
+:host {
+    input {
+        width: 100%;
+        padding: 10px 5px;
+        border-radius: 8px;
+        border-color: $pretoTransparente30;
+        outline: none;
+        color: $corPrimaria;
+        font-size: 1rem;
+        font-weight: 500;
+
+        &::placeholder {
+            color: $pretoTransparente30;
+            font-size: .85rem;
+        }
+
+        &:focus,
+        &:active {
+            border-color: $corPrimaria;
+            border-width: 2px;
+        }
+    }
+
+    .sugestoes {
+        flex-wrap: wrap;
+
+        span {
+            background-color: white;
+            margin-right: 5px;
+            padding: 5px 10px;
+            color: $pretoTransparente70;
+            border: 1px solid $pretoTransparente30;
+            margin-top: 10px;
+            font-size: .8rem;
+            border-radius: 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba($color: $corPrimaria, $alpha: .5);
+                color: white;
+            }
+        }
+    }
+}

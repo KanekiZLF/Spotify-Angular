@@ -1,0 +1,11 @@
+@import 'variables.scss';
+
+.container {
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0px;
+
+    img {
+        width: 40px;
+    }
+}

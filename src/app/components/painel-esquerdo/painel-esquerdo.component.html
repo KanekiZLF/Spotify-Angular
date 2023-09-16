@@ -23,7 +23,7 @@
 
         <div class="playlist-scroll">
             <app-botao-menu *ngFor="let playlist of playlists" [descricao]="playlist.nome"
-                [selecionado]="menuSelecionado == playlist.id" (click)="botaoClick(playlist.id)">
+                [selecionado]="menuSelecionado == playlist.id" (click)="irParaPlaylist(playlist.id)">
                 <fa-icon [icon]="playlistIcon"></fa-icon>
             </app-botao-menu>
         </div>

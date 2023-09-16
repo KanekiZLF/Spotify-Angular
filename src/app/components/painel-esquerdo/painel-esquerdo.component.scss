@@ -81,6 +81,7 @@ $h-desconsiderar: calc($h-spotify-logo + $h-menu-opcoes + $h-footer-user);
     }
 
     .usuario-info {
+        position: relative;
         flex-grow: 0;
         display: block;
         bottom: 0;

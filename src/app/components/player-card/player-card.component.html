@@ -4,6 +4,7 @@
         <span> {{ musica.titulo }} </span>
         <div class="botoes">
             <fa-icon [icon]="anteriorIcon" (click)="voltarMusica()"></fa-icon>
+            <fa-icon [icon]="playIcon" (click)="obterEstadoMusica()"></fa-icon>
             <fa-icon [icon]="proximoIcon" (click)="proximaMusica()"></fa-icon>
         </div>
     </div>

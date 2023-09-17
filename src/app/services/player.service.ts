@@ -41,4 +41,8 @@ export class PlayerService {
     async proximaMusica() {
         await this.spotifyService.proximaMusica();
     }
+
+    async obterEstadoMusica() {
+        await this.spotifyService.obterEstadoMusica();
+    }
 }

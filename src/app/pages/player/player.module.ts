@@ -32,7 +32,7 @@ import { BannerComponent } from 'src/app/components/banner/banner.component';
     ArtistaItemImagemComponent,
     PlayerCardComponent,
     ListaMusicasComponent,
-    BannerComponent
+    BannerComponent,
 
   ],
   imports: [

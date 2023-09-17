@@ -106,6 +106,15 @@ export class SpotifyService {
     return SpotifyTrackParaMusicas(musicaSpotify.item);
   }
 
+  async obterEstadoMusica(): Promise<void> {
+    const musicaAtual = await this.spotifyApi.getMyCurrentPlaybackState();
+    if (musicaAtual.is_playing) {
+      this.spotifyApi.pause();
+    } else {
+      this.spotifyApi.play();
+    }
+  }
+
   async voltarMusica() {
     await this.spotifyApi.skipToPrevious();
   }
